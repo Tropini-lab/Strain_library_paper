@@ -1,0 +1,50 @@
+---
+title: "Figure 4C: Guar Gum pH"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+library(reshape)
+library(dplyr)
+library(rstatix)
+library(ggpubr)
+```
+
+```{r}
+data <- read.csv("input/GG_diet_metadata_and_pH.csv",header=TRUE) 
+# M8 duodenum found to be outlier by Grubb's test, omitted
+data <- data %>% filter(!(Mouse == "M8" & Intestinal.Site == "0 - Duo"))
+pivot_data <- data %>% pivot_longer(cols = c("pH","Osmolality"),names_to = "metric") 
+pivot_data$Intestinal.Site <- factor(pivot_data$Intestinal.Site,levels=c("Duodenum","Jejunum","Ileum","Cecum","Colon")) 
+```
+
+
+```{r}
+curr_plot <- pivot_data %>% filter(metric == "pH") %>%
+  ggplot(aes(x = Intestinal.Site, y = value)) + 
+  geom_boxplot(aes(fill=Diet)) + 
+  scale_fill_manual(values=c("#f39c12", "#9b59b6")) + 
+  theme_bw() + 
+  theme(strip.background = element_blank(), strip.placement = "outside") +
+  xlab("Intestinal Site") + ylab("pH") + 
+  guides(alpha="none") +
+theme(legend.position = "none",axis.text = element_text(size=12))
+
+
+stat.test <- pivot_data %>% filter(metric == "pH") %>%
+  group_by(Intestinal.Site) %>%
+  t_test(value ~ Diet) %>%
+  adjust_pvalue(method = "bonferroni") %>%
+  add_significance()
+
+stat.test <- stat.test %>% add_xy_position(x = "Intestinal.Site")
+curr_plot + stat_pvalue_manual(stat.test, label = "p.adj.signif")
+
+ggsave("output/Figure_4C_guar_gum_pH.png",height=7,width=7)
+ggsave("output/Figure_4C_guar_gum_pH.pdf",height=7,width=7)
+
+```
+
+

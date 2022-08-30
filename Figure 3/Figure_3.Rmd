@@ -1,0 +1,93 @@
+---
+title: "Figure 3 taxa summaries and correlations"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+library(reshape)
+library(dplyr)
+library(forcats)
+library(tidytext)
+library(Hmisc)
+```
+# Import data
+```{r}
+L5_data <- read.csv("input/L5_filtered_1pct.csv",header = TRUE, sep = ",")
+```
+
+```{r}
+
+L5_data_melted = melt(L5_data,id=c("sample","donor","type","category_value","pH","osmolality"))
+
+# Colorblind-friendly palette from https://personal.sron.nl/~pault/data/colourschemes.pdf
+mycolors = c("#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#CC6677","#882255","#AA4499","#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#CC6677","#882255","#AA4499","#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#DDDDDD")
+
+```
+
+```{r}
+ggplot(L5_data_melted, aes(fill=variable, y=value, x=category_value)) + scale_fill_manual(values=mycolors)  + theme(strip.text.x = element_text(size = 30)) + geom_bar(position="fill", stat="identity") + facet_grid(donor ~ type,scales = "free_x", space='free') +
+  ylab("Relative Abundance") + xlab("Condition") + 
+  theme_bw() + scale_y_continuous(limits=c(0, 1), expand = c(0, 0)) +
+  theme(plot.title = element_text(size=18),
+          text = element_text(size=14),
+          legend.text = element_text(size=8),
+          strip.text.x = element_text(size = 12),
+          strip.background = element_blank(),
+          axis.text.y = element_text(size = 8),
+          axis.text.x = element_text(size = 8,angle = 45,hjust = 1))  + guides(fill=guide_legend(nrow=25,byrow=TRUE)) +
+  theme(legend.position = "right",legend.title=element_blank(),panel.spacing.y=unit(1, "lines"))
+
+ggsave('output/Figure_3A_by_donor.pdf',width=6, height=11.5)
+ggsave('output/Figure_3A_by_donor.png',width=6, height=11.5)
+```
+
+
+
+# Plot all significant taxa for pH/osmolality (and their corresponding values in the other category, even if not sig)
+
+```{r}
+L5_corr_data <- read.csv("input/L5_with_pH_and_osmolality_no_sample_names.csv",header = TRUE, sep = ",")
+p_corrs <- rcorr(as.matrix(L5_corr_data),type="pearson")
+
+
+p_corr_long <- as.data.frame(p_corrs$r) %>% rownames_to_column(var="measure1") %>% pivot_longer(-measure1,"measure2") 
+
+```
+# Figure 3B: Pearson correlation
+
+```{r}
+p_corr_long %>% filter(!(value < 0.5 & value > -0.5) & !(value == 1)) %>% filter(measure1 == "pH" | measure1 == "osmolality") %>% ggplot(aes(x = measure1, y = reorder_within(measure2, -value, measure1), fill = value)) + geom_tile() + scale_y_reordered() +  scale_fill_gradient2(mid="#EAECCC",low="#364B9A",high="#A50026", limits=c(-1,1)) +
+  theme_bw() + ylab("Family") + labs(fill="Pearson correlation") + theme(strip.text.x = element_blank(), strip.background = element_blank(), axis.ticks = element_blank(), axis.text.x = element_text(size=12), axis.title.x = element_blank()) + facet_wrap(. ~ measure1,scales="free")  + geom_text(aes(label = round(value, 2)))  + scale_x_discrete(position="top")
+
+ggsave("output/Figure_3B_pearson.png")
+ggsave("output/Figure_3B_pearson.pdf")
+```
+# Figure 3C: Scatterplots
+```{r}
+all_metric <- c("osmolality","pH")
+all_taxa <- c("Enterococcaceae","Bifidobacteriaceae")
+
+
+for (z in 1:length(all_metric))
+{
+  metric <- all_metric[z]
+  taxon <- all_taxa[z]
+
+  r <- p_corr_long %>% filter(measure1 == metric & measure2 == taxon) %>% pull(value) %>% round(2)
+
+  L5_data_melted %>% filter(variable==taxon & type == metric) %>% 
+  ggplot(aes(x = get(metric), y = value)) + geom_point() + theme_bw() + ylab("Relative abundance") + 
+    geom_smooth(method = "lm", se = FALSE) + 
+    ggtitle(sprintf("%s, r = %s",taxon,r)) + xlab(metric)
+  
+ggsave(sprintf("output/Figure_3C_%s_%s_scatter.png",taxon,metric),width=3,height=3)
+ggsave(sprintf("output/Figure_3C_%s_%s_scatter.pdf",taxon,metric),width=3,height=3)
+  
+}
+
+```
+
+
+

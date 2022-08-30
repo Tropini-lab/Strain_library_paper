@@ -1,0 +1,41 @@
+﻿Mouse,Sex,Diet,Intestinal Site,pH,Osmolality
+M6,F,Guar Gum,Duodenum,6.517,NaN
+M7,F,Guar Gum,Duodenum,6.44,456
+M8,F,Guar Gum,Duodenum,6.533,1228
+M1,M,Control,Duodenum,7.287,519
+M2,M,Control,Duodenum,6.833,558
+M3,M,Control,Duodenum,6.746,522
+M4,M,Guar Gum,Duodenum,6.667,384
+M5,M,Guar Gum,Duodenum,6.65,393
+M6,F,Guar Gum,Jejunum,7.565,529
+M7,F,Guar Gum,Jejunum,7.076,435
+M8,F,Guar Gum,Jejunum,7.041,491
+M1,M,Control,Jejunum,7.748,477
+M2,M,Control,Jejunum,7.912,494
+M3,M,Control,Jejunum,7.831,464
+M4,M,Guar Gum,Jejunum,6.785,434
+M5,M,Guar Gum,Jejunum,6.672,476
+M6,F,Guar Gum,Ileum,8.238,504
+M7,F,Guar Gum,Ileum,7.805,NaN
+M8,F,Guar Gum,Ileum,8.096,484
+M1,M,Control,Ileum,7.757,NaN
+M2,M,Control,Ileum,7.961,592
+M3,M,Control,Ileum,8.211,545
+M4,M,Guar Gum,Ileum,7.777,NaN
+M5,M,Guar Gum,Ileum,7.45,417
+M6,F,Guar Gum,Cecum,NA,443
+M7,F,Guar Gum,Cecum,6.364,NaN
+M8,F,Guar Gum,Cecum,NA,465
+M1,M,Control,Cecum,7.185,450
+M2,M,Control,Cecum,7.362,629
+M3,M,Control,Cecum,7.225,464
+M4,M,Guar Gum,Cecum,6.356,468
+M5,M,Guar Gum,Cecum,6.346,427
+M6,F,Guar Gum,Colon,6.22,519
+M7,F,Guar Gum,Colon,6.011,NaN
+M8,F,Guar Gum,Colon,6.094,462
+M1,M,Control,Colon,6.991,575
+M2,M,Control,Colon,7.018,NaN
+M3,M,Control,Colon,7.102,NaN
+M4,M,Guar Gum,Colon,5.878,NaN
+M5,M,Guar Gum,Colon,5.922,526

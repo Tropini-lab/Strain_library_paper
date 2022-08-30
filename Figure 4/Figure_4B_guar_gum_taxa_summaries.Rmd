@@ -1,0 +1,50 @@
+---
+title: "Figure 4B taxa summaries and correlations"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+library(reshape)
+library(dplyr)
+library(forcats)
+library(tidytext)
+library(Hmisc)
+```
+# Import data
+```{r}
+L5_data <- read.csv("input/GG_diet_L5_filtered_top27.csv",header = TRUE, sep = ",")
+```
+
+```{r}
+
+L5_data_melted = melt(L5_data,id=c("SampleID","Mouse","Intestinal.Site","Diet"))
+L5_data_melted$Intestinal.Site <- factor(L5_data_melted$Intestinal.Site,levels=c("Duodenum","Jejunum","Ileum","Cecum","Colon")) 
+
+# Colorblind-friendly palette from https://personal.sron.nl/~pault/data/colourschemes.pdf
+mycolors = c("#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#CC6677","#882255","#AA4499","#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#CC6677","#882255","#AA4499","#332288","#88CCEE","#44AA99","#117733","#999933","#DDCC77","#CC6677","#882255","#AA4499")
+
+```
+```{r}
+ggplot(L5_data_melted, aes(fill=variable, y=value, x=Mouse)) + scale_fill_manual(values=mycolors)  + theme(strip.text.x = element_text(size = 30)) + geom_bar(position="fill", stat="identity") + facet_grid(Intestinal.Site ~ Diet,scales = "free_x",space="free",switch="y") +
+  ylab("Relative Abundance") + xlab("Condition") + 
+  theme_bw() + scale_y_continuous(limits=c(0, 1), expand = c(0, 0)) +
+  theme(plot.title = element_text(size=24),
+          text = element_text(size=20),
+          legend.text = element_text(size=8),
+          strip.text = element_text(size = 12),
+          strip.background = element_blank(),
+          strip.placement = "outside",
+          axis.text.y = element_text(size = 12),
+          axis.text.x = element_text(size = 10),
+          panel.spacing = unit(0.75, "lines")) + guides(fill=guide_legend(nrow=27,byrow=TRUE)) +
+  theme(legend.position = "right",legend.title=element_blank(),legend.spacing.y = unit(0.15, 'line'))
+ggsave("output/Figure_4B_flat.pdf",width=6, height=8)
+ggsave("output/Figure_4B_flat.png",width=6, height=8)
+```
+
+
+
+
+

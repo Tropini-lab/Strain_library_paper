@@ -1,0 +1,44 @@
+---
+title: "Figure_4D_SCFAs"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+library(reshape)
+library(dplyr)
+library(rstatix)
+library(ggpubr)
+```
+
+```{r}
+data <- read.csv("input/GG_diet_SCFAs.csv",header=TRUE)
+weight_data <- read.csv("input/GG_diet_cecal_content_weights.csv",header=TRUE)
+
+data_w_weights <- data %>% left_join(weight_data,by = c("sample" = "mouse")) %>% mutate_at(vars(-sample,-diet,-weight), funs(. / weight * 1000)) %>% select(-weight)
+data_w_weights <- data_w_weights %>% mutate(total_SCFA = rowSums(select(.,-sample,-diet)))
+data_pivoted <- data_w_weights %>% pivot_longer(-c("sample","diet"),names_to = "SCFA")
+
+individual_plot <- data_pivoted %>% filter(SCFA != "total_SCFA" ) %>% ggplot(aes(x = SCFA, y = value)) + 
+  geom_boxplot(aes(fill = diet)) +
+  scale_fill_manual(values=c("#f39c12", "#9b59b6")) + 
+  theme_bw() + ylab("Concentration (μmol/g cecal contents)")  +
+  theme(legend.position = "none",axis.text = element_text(size=12))
+
+stat.test <- data_pivoted %>% filter(SCFA != "total_SCFA" )  %>%
+  group_by(SCFA) %>%
+  t_test(value ~ diet) %>%
+  adjust_pvalue(method = "bonferroni") %>%
+  add_significance()
+
+stat.test <- stat.test %>% add_xy_position(x = "SCFA")
+individual_plot + stat_pvalue_manual(stat.test, label = "p.adj.signif")
+
+ggsave("output/Figure_4D_guar_gum_SCFA_w_acetate.png",height=7,width=7)
+ggsave("output/Figure_4D_guar_gum_SCFA_w_acetate.pdf",height=7,width=7)
+```
+
+
+
