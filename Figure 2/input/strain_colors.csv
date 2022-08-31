@@ -1,0 +1,93 @@
+﻿Strain,phylum_color,class_color,order_color,family_color,order
+Varibaculum cambriense AB12_3 HM-1190,#e69f00,#e9a91a,#ebb231,#f1c96f,1
+Bifidobacterium bifidum BB06,#e69f00,#e9a91a,#edba48,#f3d183,2
+Bifidobacterium breve S1 ATCC 15700,#e69f00,#e9a91a,#edba48,#f3d183,3
+Bifidobacterium dentium ATCC 27678,#e69f00,#e9a91a,#edba48,#f3d183,4
+Bifidobacterium longum NCC2705 ,#e69f00,#e9a91a,#edba48,#f3d183,5
+Bifidobacterium longum subsp. Infantis ATCC 15697,#e69f00,#e9a91a,#edba48,#f3d183,6
+Bifidobacterium pseudolongum NM87,#e69f00,#e9a91a,#edba48,#f3d183,7
+Olsenella uli ATCC 49627,#e69f00,#f3cf80,#f8e2b3,#f9e7c0,8
+Collinsella aerofaciens ATCC 25986,#e69f00,#f3cf80,#f8e2b3,#faeccc,9
+Eggerthella lenta 1899 B ATCC 25559,#e69f00,#f3cf80,#f8e2b3,#fbf1d9,10
+Bacteroides caccae ATCC 43185,#009e73,#1aa881,#31b18e,#5fc2a7,11
+Bacteroides caccae CL03T12C61 HM-728,#009e73,#1aa881,#31b18e,#5fc2a7,12
+Bacteroides cellulosilyticus CRE21 DSM 14838,#009e73,#1aa881,#31b18e,#5fc2a7,13
+Bacteroides eggerthii ATCC 27754,#009e73,#1aa881,#31b18e,#5fc2a7,14
+Bacteroides fragilis 3_1_12 BEI HM-20,#009e73,#1aa881,#31b18e,#5fc2a7,15
+Bacteroides fragilis ATCC 25285,#009e73,#1aa881,#31b18e,#5fc2a7,16
+Bacteroides fragilis CL07T12C05 HM-710,#009e73,#1aa881,#31b18e,#5fc2a7,17
+Bacteroides ovatus 3_8_47FAA BEI HM-222,#009e73,#1aa881,#31b18e,#5fc2a7,18
+Bacteroides ovatus ATCC 8483,#009e73,#1aa881,#31b18e,#5fc2a7,19
+Bacteroides ovatus isolate,#009e73,#1aa881,#31b18e,#5fc2a7,20
+Bacteroides sp. 4_1_36 HM-258,#009e73,#1aa881,#31b18e,#5fc2a7,21
+Bacteroides thetaiotaomicron 3731 ,#009e73,#1aa881,#31b18e,#5fc2a7,22
+Bacteroides thetaiotaomicron VPI 5482,#009e73,#1aa881,#31b18e,#5fc2a7,23
+Bacteroides xylanisolvens XB1A DSM 18836,#009e73,#1aa881,#31b18e,#5fc2a7,24
+Phocaeicola dorei 5_1_36/D4 HM-29,#009e73,#1aa881,#31b18e,#5fc2a7,25
+Phocaeicola sartorii NM22,#009e73,#1aa881,#31b18e,#5fc2a7,26
+Phocaeicola vulgatus ATCC 8482,#009e73,#1aa881,#31b18e,#5fc2a7,27
+Prevotella buccae D17 ,#009e73,#1aa881,#31b18e,#76cbb3,28
+Prevotella buccalis ATCC 35310,#009e73,#1aa881,#31b18e,#76cbb3,29
+Prevotella copri CB7 DSM 18205,#009e73,#1aa881,#31b18e,#76cbb3,30
+Prevotella oralis CC98A HM-1054,#009e73,#1aa881,#31b18e,#76cbb3,31
+Parabacteroides distasonis ATCC 8503,#009e73,#1aa881,#31b18e,#8dd4c0,32
+Desulfovibrio vulgaris ATCC 29579,#cc79a7,#d186b0,#da9ec0,#e8c3d8,33
+Bacillus sp. 7_6_55CFAA_CT2 HM-231,#56b4e9,#4da2d2,#5fabd7,#6fb3db,34
+Catenibacterium mitsuokai RCA14-39 DSM 15897,#56b4e9,#4da2d2,#82bee0,#a8d2e9,35
+Holdemanella biformis VPI C17-5 ATCC 27806,#56b4e9,#4da2d2,#82bee0,#b4d8ec,36
+Facklamia sp. HGF4 HM-289,#56b4e9,#4da2d2,#a6d1e9,#b8daed,37
+Granulicatella adiacens GaD ATCC 49175,#56b4e9,#4da2d2,#a6d1e9,#c1dff0,38
+Enterococcus faecalis TX1322 HM-202,#56b4e9,#4da2d2,#a6d1e9,#d3e8f4,39
+Enterococcus faecium TX1330 HM-204,#56b4e9,#4da2d2,#a6d1e9,#d3e8f4,40
+Lacticaseibacillus casei HA108,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,41
+Lacticaseibacillus casei Lc-11,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,42
+Lacticaseibacillus rhamnosus GG ATCC 53103,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,43
+Lacticaseibacillus rhamnosus HA-114,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,44
+Lactiplantibacillus plantarum A138,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,45
+Lactiplantibacillus plantarum HA-119,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,46
+Lactiplantibacillus plantarum Lp-115,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,47
+Lactiplantibacillus plantarum LP01,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,48
+Lactiplantibacillus plantarum WCFS1 ATCC BAA-7,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,49
+Lactobacillus acidophilus A118,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,50
+Lactobacillus intestinalis NM61,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,51
+Lactobacillus johnsonii NM60,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,52
+Ligilactobacillus murinus strain 1 NM28,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,53
+Ligilactobacillus murinus strain 2 NM26,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,54
+Ligilactobacillus ruminis ATCC 25644,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,55
+Ligilactobacillus salivarius HA118,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,56
+Limosilactobacillus reuteri strain 1 NM11,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,57
+Limosilactobacillus reuteri strain 2 NM12,#56b4e9,#4da2d2,#a6d1e9,#dbedf6,58
+Lactococcus lactis A200,#56b4e9,#4da2d2,#a6d1e9,#edf6fb,59
+Streptococcus parasanguinis CC87K HM-1060,#56b4e9,#4da2d2,#a6d1e9,#edf6fb,60
+Streptococcus sanguinis CC94A HM-1061,#56b4e9,#4da2d2,#a6d1e9,#edf6fb,61
+Clostridium sporogenes ATCC 15579,#56b4e9,#67bceb,#76c3ed,#84c9ef,62
+Clostridium symbiosum WAL-14673 HM-319,#56b4e9,#67bceb,#76c3ed,#84c9ef,63
+Lachnospira eligens C15-B4 ATCC 27750,#56b4e9,#67bceb,#85c9ef,#9dd4f2,64
+Eubacterium ventriosum VPI 1013B ATCC 27560,#56b4e9,#67bceb,#85c9ef,#9dd4f2,65
+Anaerostipes caccae 3_2_56FAA HM-220,#56b4e9,#67bceb,#85c9ef,#9dd4f2,66
+Blautia producta ATCC 27340,#56b4e9,#67bceb,#85c9ef,#9dd4f2,67
+Enterocloster citroniae WAL-17108 HM-315,#56b4e9,#67bceb,#85c9ef,#9dd4f2,68
+Lacrimispora saccharolytica WM1 ATCC 35040,#56b4e9,#67bceb,#85c9ef,#9dd4f2,69
+Clostridioides difficile M68 ,#56b4e9,#67bceb,#95d0f1,#a4d7f3,70
+Intestinibacter bartlettii ATCC BAA 827,#56b4e9,#67bceb,#95d0f1,#a4d7f3,71
+Peptostreptococcus anaerobius CC14N HM-1051,#56b4e9,#67bceb,#95d0f1,#a4d7f3,72
+Acidaminococcus intestini D21 HM-81,#56b4e9,#abdaf4,#b3def5,#c4e5f7,73
+Mitsuokella multacida A 405-1 ATCC 27723,#56b4e9,#abdaf4,#d5edfa,#e6f4fc,74
+Veillonella dispar ATCC 17748,#56b4e9,#abdaf4,#d5edfa,#f7fbfe,75
+Veillonella sp. 6_1_27 HM-49,#56b4e9,#abdaf4,#d5edfa,#f7fbfe,76
+Fusobacterium nucleatum subsp. Animalis D11 HM-75,#0072b2,#338ec1,#66aad1,#99c7e0,77
+Fusobacterium ulcerans 12_1B HM-57,#0072b2,#338ec1,#66aad1,#99c7e0,78
+Citrobacter portucalensis 30_2 HM-34,#d55e00,#dd7e33,#e28e4d,#e69e66,79
+Citrobacter portucalensis 4_7_47CFAA HM-299,#d55e00,#dd7e33,#e28e4d,#e69e66,80
+Citrobacter youngae ATCC 29220,#d55e00,#dd7e33,#e28e4d,#e69e66,81
+Enterobacter cancerogenus ATCC 35316,#d55e00,#dd7e33,#e28e4d,#e69e66,82
+Escherichia coli BW25113,#d55e00,#dd7e33,#e28e4d,#e69e66,83
+Escherichia coli LF82,#d55e00,#dd7e33,#e28e4d,#e69e66,84
+Escherichia coli p19A,#d55e00,#dd7e33,#e28e4d,#e69e66,85
+Escherichia fergusonii NM84,#d55e00,#dd7e33,#e28e4d,#e69e66,86
+Klebsiella variicola NM43,#d55e00,#dd7e33,#e28e4d,#e69e66,87
+Edwardsiella tarda ATCC 23685,#d55e00,#dd7e33,#e28e4d,#eaaf80,88
+Proteus penneri CDC 4732-68 ATCC 35198,#d55e00,#dd7e33,#e28e4d,#f2cfb3,89
+Providencia rustigianii CDC 132-68 ATCC 33673,#d55e00,#dd7e33,#e28e4d,#f2cfb3,90
+Providencia stuartii ATCC 25827,#d55e00,#dd7e33,#e28e4d,#f2cfb3,91
+Akkermansia muciniphila ATCC BAA-835,#f0e442,#f3e968,#f8f2a1,#fbf7c6,92
