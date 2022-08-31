@@ -1,0 +1,100 @@
+---
+title: "Figure 2A, S1A/B"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(RColorBrewer)
+library(reshape)
+library(dplyr)
+library(forcats)
+library(tidytext)
+library(Hmisc)
+library(readxl)
+library(ggiraph)
+```
+# Figure 2A: Heatmap
+```{r}
+data <- read.csv("input/220812_pH_table_lagtime_clean_strains_no_outliers2.csv")
+
+avg_data <- data %>% group_by(Condition_numeric,condition_category,Strain,order,type) %>% summarize_at(c("corrected_individual_rate","corrected_individual_OD"), mean) 
+avg_data$condition_category <- factor(avg_data$condition_category,levels = c("lowest osmolality","~890 mOsm/kg", "~1170 mOsm/kg", "~1800 mOsm/kg", "pH 4", "pH 5.5", "pH 6.9", "pH 7.4"))
+
+avg_data_pivoted <- avg_data %>% pivot_longer(-c(Condition_numeric,condition_category,Strain,order,type),names_to="metric")
+avg_data_pivoted$Strain <- fct_reorder(avg_data_pivoted$Strain,avg_data_pivoted$order)
+
+wide_rate_data <- avg_data %>% ungroup() %>% select(-c("corrected_individual_OD","type","Condition_numeric")) %>% pivot_wider(names_from = "condition_category",values_from = "corrected_individual_rate")
+wide_OD_data <- avg_data  %>% ungroup() %>% select(-c("corrected_individual_rate","type","Condition_numeric")) %>% pivot_wider(names_from = "condition_category",values_from = "corrected_individual_OD")
+
+all_normalized_data <- {};
+
+for (condition_type in c("osmolality","pH")){
+curr_condition_data <- avg_data_pivoted %>% filter(type == condition_type)
+if (condition_type == "osmolality"){ 
+  curr_palette <- "BuGn"
+} else {
+      curr_palette <- "BuPu"
+    }
+
+maxvals <- curr_condition_data %>% group_by(Strain,metric) %>% summarize_at(vars(value),max,na.rm = TRUE) %>% dplyr::rename(max_val = value)
+curr_condition_data <- curr_condition_data %>% left_join(maxvals,by = c("Strain","metric")) %>% mutate(normalized_val = value/max_val)
+
+for (met in unique(curr_condition_data$metric)){
+curr_condition_data %>% filter(metric == met) %>%
+  ggplot(aes(x = condition_category,y = Strain)) + geom_tile(aes(fill = normalized_val)) + theme_bw() + scale_fill_distiller(palette=curr_palette, direction = 1) + xlab("Condition") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggsave(sprintf("output/%s_%s.png",condition_type,met),height = 10.5, width = 6)
+ggsave(sprintf("output/%s_%s.pdf",condition_type,met),height = 10.5, width = 6)
+}
+
+all_normalized_data <- rbind(all_normalized_data,curr_condition_data)
+}
+
+#write.csv(all_normalized_data %>% ungroup()  %>% filter(metric == "corrected_individual_rate") %>% select(-c("type","value","max_val","Condition_numeric")) %>% pivot_wider(names_from = "condition_category",values_from = "normalized_val"),"normalized_rate_data.csv")
+#write.csv(all_normalized_data %>% ungroup()  %>% filter(metric == "corrected_individual_OD") %>% select(-c("type","value","max_val","Condition_numeric")) %>% pivot_wider(names_from = "condition_category",values_from = "normalized_val"),"normalized_OD_data.csv")
+
+
+```
+# Figure 2A: Heatmap colors
+```{r}
+color_data <- read.csv("input/strain_colors.csv")
+
+pivoted_color  <- color_data %>% pivot_longer(cols = ends_with("_color"), names_to = "taxa_level", values_to = "color") 
+
+pivoted_color$taxa_level <- factor(pivoted_color$taxa_level, levels=c("phylum_color", "class_color", "order_color","family_color"))
+pivoted_color$Strain <- fct_reorder(pivoted_color$Strain,pivoted_color$order)
+
+pivoted_color %>%
+  ggplot(aes(x = taxa_level, y = Strain, fill = color)) + geom_tile() + scale_fill_identity() + theme_bw() +  xlab("Taxonomic level") + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) 
+ggsave(sprintf("output/strain_colors.png"),height = 10.5, width = 5)
+ggsave(sprintf("output/strain_colors.pdf"),height = 10.5, width = 5)
+```
+
+# Figure S1A: Delta pH 
+```{r}
+pH_data <- read.csv("input/220812_pH_table_lagtime_clean_strains_no_outliers_with_pH.csv")
+pH_data %>% ggplot(aes(x = delta_pH, y = corrected_individual_OD,color=SILVA_family)) + 
+  geom_point() + 
+  xlim(-1,1.6) + 
+  facet_wrap(.~condition_category,nrow=2) +
+  theme_bw() +
+  theme(strip.background = element_blank(),legend.position = "bottom")
+ggsave("output/Figure_S1A_pH.pdf",width=12,height=8)
+```
+# Figure S1B: OD vs. categories
+```{r}
+pH_data %>% ggplot(aes(x = corrected_individual_rate, y = corrected_individual_OD,color=SILVA_family)) + 
+  geom_point() + 
+  facet_grid(type~category_magnitude) +
+  theme_bw() +
+  theme(strip.background = element_blank(),legend.position = "bottom")
+ggsave("output/Figure_S1B_osmolality_vs_pH.pdf",width=12,height=8)
+```
+
+
+
+
+
