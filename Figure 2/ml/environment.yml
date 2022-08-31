@@ -1,0 +1,16 @@
+# name: strain_library
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - tqdm 
+  - numpy
+  - pandas 
+  - jupyterlab
+  - jupyter_http_over_ws 
+  - scikit-learn 
+  - umap-learn
+  - plotly 
+  - python-kaleido 
+  - matplotlib
+  - openpyxl 
