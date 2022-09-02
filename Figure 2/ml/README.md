@@ -1,6 +1,11 @@
 # Machine learning decision tree analysis for PATRIC feature identification
 
 # Creating the environment
+
+You will need a working conda installation.  We suggest installing Miniconda.
+
+See: https://docs.conda.io/projects/conda/en/latest/user-guide/install/download.html
+
 ```
 cd "Figure 2/ml"
 ./bootstrap_env.sh
