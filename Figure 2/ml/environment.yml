@@ -1,4 +1,4 @@
-# name: strain_library
+name: strain_library
 channels:
   - conda-forge
   - defaults
@@ -6,11 +6,13 @@ dependencies:
   - tqdm 
   - numpy
   - pandas 
+  - openpyxl 
   - jupyterlab
   - jupyter_http_over_ws 
   - scikit-learn 
   - umap-learn
   - plotly 
-  - python-kaleido 
+  # Doesn't work on M1 Macs from conda: https://github.com/plotly/Kaleido/issues/70
+  # - python-kaleido   
   - matplotlib
-  - openpyxl 
+  - pytest
